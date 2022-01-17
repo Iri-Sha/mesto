@@ -1,0 +1,17 @@
+.popup__about-me {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: #000000;
+  margin: 0 36px;
+  padding: 30px 0 13px;
+  max-width: 358px;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+@media screen and (max-width: 700px) {
+  .popup__about-me {
+    margin: 0 22px;
+  }
+}

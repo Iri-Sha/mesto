@@ -1,0 +1,10 @@
+.page {
+  max-width: 1280px;
+  background-color: #000000;
+  margin: 0 auto;
+  font-family: 'Inter', Arial, sans-serif;
+  display: block;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
