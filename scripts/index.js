@@ -72,7 +72,7 @@ const PopupMestoLink = document.querySelector('.popup__field_mesto_link');
 const addButton = document.querySelector('.profile__add-button');
 const ButtonDeleteCard = document.querySelector('.card__delete-button');
 const FormElementCard = document.querySelector('.popup__container_add-card');
-const popupZoomImage = document.querySelector('.popup__view-image');
+const popupZoomImage = document.querySelector('.popup_view-image');
 const PopupButtonCloseImage = document.querySelector('.popup__close_image');
 const cardTitle = document.querySelector('.card__title');
 
