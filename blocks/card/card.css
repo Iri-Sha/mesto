@@ -5,3 +5,8 @@
   width: 282px;
   margin: 0 auto;
 }
+
+.card:hover {
+  cursor: pointer;
+  opacity: .6s;
+}
