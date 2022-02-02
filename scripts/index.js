@@ -107,8 +107,8 @@ function createCard(item) {
 };
 
 //Инициализация карточек при загрузке страницы
-function renderCards(evt) {
-  const cardElement = createCard(evt);
+function renderCards(item) {
+  const cardElement = createCard(item);
   elementsCards.append(cardElement);
 };
 
@@ -121,13 +121,7 @@ render();
 //Добавление новой карточки
 function addNewCard(evt) {
   const newCardElement = createCard(evt);
-
-  newCardElement.querySelector('.card__title').textContent = popupMestoName.value;
-  newCardElement.querySelector('.card__image').src = popupMestoLink.value;
-  newCardElement.querySelector('.card__image').alt = popupMestoName.value;
-
   elementsCards.prepend(newCardElement);
-  formElementCard.reset ();
 };
 
 profileOpenAddButton.addEventListener('click', function() {
@@ -138,7 +132,12 @@ profileOpenAddButton.addEventListener('click', function() {
 
 function handleNewCardFormSubmit (evt) {
   evt.preventDefault();
-  addNewCard(evt);
+  const item = {
+    name: popupMestoName.value,
+    link: popupMestoLink.value
+  }
+  addNewCard(item);
+  formElementCard.reset ();
   closePopup(popupAddCard);
 };
 
