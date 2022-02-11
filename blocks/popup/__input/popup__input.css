@@ -1,9 +1,9 @@
-.popup__field {
+.popup__input {
   font-size: 14px;
   line-height: 17px;
   color: #000000;
   font-weight: 400;
-  margin: 0 36px 30px;
+  margin: 30px 36px 0;
   padding: 0 0 9px;
   max-width: 358px;
   border: none;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  .popup__field {
-    margin: 0 22px 30px;
+  .popup__input {
+    margin: 30px 22px 0;
   }
 }

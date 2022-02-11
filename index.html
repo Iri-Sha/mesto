@@ -38,23 +38,31 @@
     </footer>
 
     <section class="popup popup_profile-edit">
-      <form class="popup__container" name="formEditProfile">
+      <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__field popup__field_profile_name" name="formFieldName" type="text" value="Жак-Ив Кусто">
-        <input class="popup__field popup__field_profile_about-me" name="formFieldAboutMe" type="text" value="Исследователь океана">
-        <button class="popup__save" type="submit">Сохранить</button>
-      </form>
+        <form class="popup__form popup__form_profile" name="formEditProfile" novalidate>
+          <input id="input__profile_name" class="popup__input popup__input_profile_name" placeholder="Имя" type="text" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+          <span class="popup__error input__profile_name-error"></span>
+          <input id="input__profile_about" class="popup__input popup__input_profile_about-me" placeholder="О себе" type="text" value="Исследователь океана" minlength="2" maxlength="200" required>
+          <span class="popup__error input__profile_about-error"></span>
+          <button class="popup__button popup__button_profile" type="submit">Сохранить</button>
+        </form>
+      </div>
     </section>
 
     <section class="popup popup_card-add">
-      <form class="popup__container popup__container_add-card" name="formAddCard">
+      <div class="popup__container popup__container_add-card">
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
-        <input class="popup__field popup__field_mesto_name" name="formFieldMestoName" type="text" placeholder="Название" value="">
-        <input class="popup__field popup__field_mesto_link" name="formFieldMestoLink" type="text" placeholder="Ссылка на картинку" value="">
-        <button class="popup__save popup__save_new-card" type="submit">Создать</button>
-      </form>
+        <form class="popup__form popup__form_card" name="formAddCard" novalidate>
+          <input id="input__mesto_name" class="popup__input popup__input_mesto_name" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__error input__mesto_name-error"></span>
+          <input id="input__mesto_link" class="popup__input popup__input_mesto_link" type="url" placeholder="Ссылка на картинку" required>
+          <span class="popup__error input__mesto_link-error"></span>
+          <button class="popup__button popup__button_new-card" type="submit">Создать</button>
+        </form>
+      </div>
     </section>
 
     <section class="popup popup_view-image">
@@ -78,5 +86,6 @@
   </template>
 
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

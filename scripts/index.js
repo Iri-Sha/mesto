@@ -2,8 +2,8 @@ const profileOpenEditButton = document.querySelector('.profile__edit-button');
 const popups = document.querySelectorAll('.popup');
 const popupProfileEdit = document.querySelector('.popup_profile-edit');
 const formElementProfile = popupProfileEdit.querySelector('.popup__container');
-const nameInput = document.querySelector('.popup__field_profile_name');
-const jobInput = document.querySelector('.popup__field_profile_about-me');
+const nameInput = document.querySelector('.popup__input_profile_name');
+const jobInput = document.querySelector('.popup__input_profile_about-me');
 const nameInputChange = document.querySelector('.profile__name');
 const jobInputChange = document.querySelector('.profile__about-me');
 
@@ -38,19 +38,55 @@ const cardTemplate = document.querySelector('#card-template').content;
 const elementsCards = document.querySelector('.elements__cards');
 const profileOpenAddButton = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_card-add');
-const popupMestoName = popupAddCard.querySelector('.popup__field_mesto_name');
-const popupMestoLink = popupAddCard.querySelector('.popup__field_mesto_link');
-const formElementCard = document.querySelector('.popup__container_add-card');
+const popupMestoName = popupAddCard.querySelector('.popup__input_mesto_name');
+const popupMestoLink = popupAddCard.querySelector('.popup__input_mesto_link');
+const formElementCard = document.querySelector('.popup__form_card');
 const popupZoomImage = document.querySelector('.popup_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
+const popupProfileButton = document.querySelector('.popup__button_profile');
+const popupCardButton = document.querySelector('.popup__button_new-card');
+const inputs = document.querySelectorAll('.popup__input');
+const errors = document.querySelectorAll('.popup__error');
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscape);
 };
 
 function closePopup(elem) {
   elem.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEscape);
+};
+
+//Закрытие попапов по клику на оверлей и крестик
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  });
+});
+
+//Закрытие попапов по клику на Esc
+const closePopupEscape = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupListEsc = Array.from(popups);
+      popupListEsc.forEach(closePopup);
+  }
+};
+
+function clearError() {
+  inputs.forEach((input) => {
+    input.classList.remove('popup__input_type_error');
+  });
+  errors.forEach((error) => {
+    error.classList.remove('popup__error_visible');
+    error.textContent = '';
+  })
 };
 
 //Редактирование профиля
@@ -58,6 +94,7 @@ profileOpenEditButton.addEventListener('click', function() {
   openPopup(popupProfileEdit);
   nameInput.value = nameInputChange.textContent;
   jobInput.value = jobInputChange.textContent;
+  clearError();
 });
 
 function handleProfileFormSubmit (evt) {
@@ -126,6 +163,11 @@ function addNewCard(evt) {
 
 profileOpenAddButton.addEventListener('click', function() {
   openPopup(popupAddCard);
+  formElementCard.reset();
+  clearError();
+  popupCardButton.classList.add('popup__button_disabled');
+
+
   popupMestoName.textContent = popupMestoName.value;
   popupMestoLink.textContent = popupMestoLink.value;
 });
@@ -137,20 +179,8 @@ function handleNewCardFormSubmit (evt) {
     link: popupMestoLink.value
   }
   addNewCard(item);
-  formElementCard.reset ();
+  formElementCard.reset();
   closePopup(popupAddCard);
 };
 
-formElementCard.addEventListener('submit', handleNewCardFormSubmit);
-
-//Закрытие попапов
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup_opened')) {
-        closePopup(popup);
-      }
-      if (evt.target.classList.contains('popup__close')) {
-        closePopup(popup);
-      }
-  })
-});
+formElementCard.addEventListener('submit', handleNewCardFormSubmit)
