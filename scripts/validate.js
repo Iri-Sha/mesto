@@ -1,6 +1,6 @@
 //показывает элемент ошибки
 const showInputError = (formElement, inputElement, errorMessage, {inputErrorClass, errorClass}) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
@@ -8,7 +8,7 @@ const showInputError = (formElement, inputElement, errorMessage, {inputErrorClas
 
 //скрывает элемент ошибки
 const hideInputError = (formElement, inputElement, {inputErrorClass, errorClass}) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
