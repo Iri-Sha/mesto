@@ -4,7 +4,7 @@
   background: #000000;
   border-radius: 2px;
   color: #FFFFFF;
-  margin: 48px auto 37px;
+  margin: 8px auto 37px;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -19,7 +19,7 @@
   .popup__button {
     width: 238px;
     height: 46px;
-    margin: 45px auto 25px;
+    margin: 5px auto 25px;
     font-size: 14px;
     line-height: 17px;
   }

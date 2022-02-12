@@ -32,8 +32,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement, {inactiveButtonClass}) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 }
 
@@ -60,6 +62,21 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector, in
     setEventListeners(formElement, {inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass});
   });
 };
+
+function clearError() {
+  inputs.forEach((input) => {
+    input.classList.remove('popup__input_type_error');
+  });
+  errors.forEach((error) => {
+    error.classList.remove('popup__error_visible');
+    error.textContent = '';
+  })
+};
+
+function disabledButton() {
+  popupCardButton.classList.add('popup__button_disabled');
+  popupCardButton.disabled = true;
+}
 
 enableValidation({
   formSelector: '.popup__form',
