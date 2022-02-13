@@ -73,9 +73,9 @@ function clearError() {
   })
 };
 
-function disabledButton() {
-  popupCardButton.classList.add('popup__button_disabled');
-  popupCardButton.disabled = true;
+function disabledButton(elem) {
+  elem.classList.add('popup__button_disabled');
+  elem.disabled = true;
 }
 
 enableValidation({

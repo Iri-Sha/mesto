@@ -48,6 +48,7 @@ const popupProfileButton = document.querySelector('.popup__button_profile');
 const popupCardButton = document.querySelector('.popup__button_new-card');
 const inputs = document.querySelectorAll('.popup__input');
 const errors = document.querySelectorAll('.popup__error');
+const buttonElement = document.querySelector('.popup__button');
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
@@ -154,7 +155,7 @@ function addNewCard(evt) {
 profileOpenAddButton.addEventListener('click', function() {
   formElementCard.reset();
   clearError();
-  disabledButton();
+  disabledButton(popupCardButton);
 
   popupMestoName.textContent = popupMestoName.value;
   popupMestoLink.textContent = popupMestoLink.value;
