@@ -1,3 +1,12 @@
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
 //показывает элемент ошибки
 const showInputError = (formElement, inputElement, errorMessage, {inputErrorClass, errorClass}) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -63,26 +72,19 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector, in
   });
 };
 
-function clearError() {
+function clearError(selector) {
   inputs.forEach((input) => {
-    input.classList.remove('popup__input_type_error');
+    input.classList.remove(selector);
   });
   errors.forEach((error) => {
-    error.classList.remove('popup__error_visible');
+    error.classList.remove(selector);
     error.textContent = '';
   })
 };
 
-function disabledButton(elem) {
-  elem.classList.add('popup__button_disabled');
+function disabledButton(elem, selector) {
+  elem.classList.add(selector);
   elem.disabled = true;
 }
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(config);

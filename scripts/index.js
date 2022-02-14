@@ -84,7 +84,7 @@ const closePopupEscape = (evt) => {
 profileOpenEditButton.addEventListener('click', function() {
   nameInput.value = nameInputChange.textContent;
   jobInput.value = jobInputChange.textContent;
-  clearError();
+  clearError(config.inputErrorClass, config.errorClass);
   openPopup(popupProfileEdit);
 });
 
@@ -154,8 +154,8 @@ function addNewCard(evt) {
 
 profileOpenAddButton.addEventListener('click', function() {
   formElementCard.reset();
-  clearError();
-  disabledButton(popupCardButton);
+  clearError(config.inputErrorClass, config.errorClass);
+  disabledButton(popupCardButton, config.inactiveButtonClass);
 
   popupMestoName.textContent = popupMestoName.value;
   popupMestoLink.textContent = popupMestoLink.value;
