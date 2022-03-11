@@ -1,3 +1,4 @@
+import { initialCards } from "./const.js";
 import { FormValidator } from "./FormValidator.js";
 import { Card } from "./Card.js";
 
@@ -9,33 +10,6 @@ const nameInput = document.querySelector('.popup__input_profile_name');
 const jobInput = document.querySelector('.popup__input_profile_about-me');
 const nameInputChange = document.querySelector('.profile__name');
 const jobInputChange = document.querySelector('.profile__about-me');
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 const cardTemplate = document.querySelector('#card-template').content;
 const elementsCards = document.querySelector('.elements__cards');
@@ -128,21 +102,14 @@ const openImagePopup = (title, link) => {
 function renderCards(data) {
   const card = new Card(data,'#card-template', openImagePopup);
   const cardElement = card.createCard();
-  elementsCards.append(cardElement);
+  elementsCards.prepend(cardElement);
 };
 
 function render() {
-  initialCards.forEach(renderCards);
+  initialCards.reverse().forEach(renderCards);
 };
 
 render();
-
-//Добавление новой карточки
-function addNewCard(data) {
-  const card = new Card(data,'#card-template', openImagePopup);
-  const newCardElement = card.createCard();
-  elementsCards.prepend(newCardElement);
-};
 
 profileOpenAddButton.addEventListener('click', function() {
   formElementCard.reset();
@@ -162,7 +129,7 @@ function handleNewCardFormSubmit (evt) {
     link: popupMestoLink.value
   }
   
-  addNewCard(data);
+  renderCards(data);
   closePopup(popupAddCard);
   formElementCard.reset();
 };

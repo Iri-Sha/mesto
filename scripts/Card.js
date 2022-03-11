@@ -1,6 +1,7 @@
 export class Card {
     constructor(data, cardTemplateSelector, openImagePopup) {
-        this._cardTemplate = document.querySelector(cardTemplateSelector).content;
+        this._cardTemplate = document.querySelector(cardTemplateSelector)
+            .content.querySelector('.card');
         this._name = data.name;
         this._link = data.link;
         this._openImagePopup = openImagePopup;
@@ -19,7 +20,8 @@ export class Card {
     };
 
     _deleteCard = () => {
-        this._buttonDelete.closest('.card').remove();
+        this._cardElement.remove();
+        this._cardElement = null;
     };
 
     createCard() {
