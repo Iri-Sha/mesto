@@ -1,0 +1,20 @@
+/*{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "### Описание проекта",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iri-Sha/mesto.git"
+  },
+  "author": "Irina Shamsudinova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Iri-Sha/mesto/issues"
+  },
+  "homepage": "https://github.com/Iri-Sha/mesto#readme"
+}
+*/
