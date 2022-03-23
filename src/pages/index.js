@@ -17,11 +17,11 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 
-const editProfileValidator = new FormValidator(config, formEditProfile);
-const addCardValidator = new FormValidator(config, formElementCard);
+const validatorEditProfile = new FormValidator(config, formEditProfile);
+const validatorAddCard = new FormValidator(config, formElementCard);
 
-editProfileValidator.enableValidation();
-addCardValidator.enableValidation();
+validatorEditProfile.enableValidation();
+validatorAddCard.enableValidation();
 
 const userInfo = new UserInfo('.profile__name', '.profile__about-me');
 
@@ -30,17 +30,23 @@ const popupProfileEdit = new PopupWithForm('.popup_profile-edit',
   handleFormSubmit: (data) => { 
     userInfo.setUserInfo({ name: data['profileName'], job: data['profileAbout'] });
     popupProfileEdit.close();
-  }})
+  }}
+)
+
+popupProfileEdit.setEventListeners();
 
 //Редактирование профиля
 profileOpenEditButton.addEventListener('click', function() {
-  nameInput.value = userInfo.getUserInfo().name;
-  jobInput.value = userInfo.getUserInfo().job;
-  editProfileValidator.clearError();
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name; 
+  jobInput.value = userData.job;
+  validatorEditProfile.clearError();
   popupProfileEdit.open();
 });
 
 const popupZoomImage = new PopupWithImage('.popup_view-image') 
+
+popupZoomImage.setEventListeners();
 
 //Открытие картинки
 function handleCardClick(name, link) {
@@ -74,10 +80,12 @@ const popupAddCard = new PopupWithForm('.popup_card-add',
   }}
 )
 
+popupAddCard.setEventListeners();
+
 profileOpenAddButton.addEventListener('click', function() {
   formElementCard.reset();
-  addCardValidator.clearError();
-  addCardValidator.toggleButtonState();
+  validatorAddCard.clearError();
+  validatorAddCard.toggleButtonState();
 
   popupAddCard.open();
 });
