@@ -33,9 +33,12 @@
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(../blocks/card/__delete-button/card__delete-button.css);
+@import url(../blocks/card/__like-counter/card__like-counter.css);
+@import url(../blocks/card/__like-wrap/card__like-wrap.css);
 @import url(../blocks/popup/_view-image/popup_view-image.css);
 @import url(../blocks/popup/__figure/popup__figure.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);

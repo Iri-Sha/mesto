@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   display: block;
   padding: 0;
+  margin-bottom: 3px;
 }
 
 .card__like-button:hover {

@@ -16,6 +16,7 @@
 
       <section class="profile">
         <img class="profile__avatar" src="<%=require('./images/Jacques_Yves_Cousteau.jpg')%>" alt="Фото профиля">
+        <div class="profile__edit-avatar"></div>
         <div class="profile__info">
           <div class="profile__location">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -50,6 +51,18 @@
       </div>
     </div>
 
+    <div class="popup popup_avatar-edit">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form popup__form_avatar" name="formEditAvatar" novalidate>
+          <input id="inputAvatarLink" name="avatarLink" class="popup__input popup__input_avatar_link" type="url" placeholder="Ссылка на картинку" required>
+          <span id="inputAvatarLink-error" class="popup__error"></span>
+          <button class="popup__button popup__button_avatar" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
     <div class="popup popup_card-add">
       <div class="popup__container popup__container_add-card">
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
@@ -71,6 +84,16 @@
         <figcaption class="popup__caption"></figcaption>
       </figure>
     </div>
+
+    <div class="popup popup_confirm-delete">
+      <div class="popup__container popup__container_confirm-delete">
+        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <form class="popup__form" name="popupConfirmDelete" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button type="submit" class="popup__button">Да</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <template id="card-template">
@@ -79,7 +102,10 @@
      <button class="card__delete-button" type="button" aria-label="Кнопка удаления места"></button>
      <div class="card__item">
         <h2 class="card__title"></h2>
-        <button class="card__like-button" type="button" aria-label="Кнопка нравится место"></button>
+        <div class="card__like-wrap">
+          <button class="card__like-button" type="button" aria-label="Кнопка нравится место"></button>
+          <span class="card__like-count">0</span>  
+        </div>
      </div>
     </li>
   </template>
