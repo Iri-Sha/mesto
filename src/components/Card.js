@@ -43,8 +43,7 @@ export class Card {
 
     setLikes(newLikes) {
         this._likes = newLikes
-        const likeCountElement = this._cardElement.querySelector('.card__like-count')
-        likeCountElement.textContent = this._likes.length
+        this._likeCountElement.textContent = this._likes.length
 
         if(this.isLiked()) {
             this._likeCard()
@@ -56,10 +55,12 @@ export class Card {
     createCard() {
         this._cardElement = this._cardTemplate.cloneNode(true);
         this._cardImage = this._cardElement.querySelector('.card__image');
-        const cardTitle = this._cardElement.querySelector('.card__title');
+        this._cardTitle = this._cardElement.querySelector('.card__title');
         this._buttonLike = this._cardElement.querySelector('.card__like-button');
+        this._likeCountElement = this._cardElement.querySelector('.card__like-count');
 
-        cardTitle.textContent = this._name;
+
+        this._cardTitle.textContent = this._name;
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
       

@@ -29,17 +29,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     userInfo.setUserInfo(userData)
     userId = userData._id
 
-    cardList.forEach(data => {
-      const card = renderCards({
-        name: data.name,
-        link: data.link,
-        likes: data.likes,
-        id: data._id,
-        userId: userId,
-        ownerId: data.owner._id
-      })
-      cards.addItem(card)
-    })
+    cards.renderItems(cardList)
   })
   .catch((err) => {
     console.log(err);
@@ -103,6 +93,7 @@ popupAvatarEdit.setEventListeners();
 //Редактирование аватара
 avatarOpenEdit.addEventListener('click', function() {
   validatorEditAvatar.clearError();
+  validatorEditAvatar.toggleButtonState();
   popupAvatarEdit.open();
 });
 
@@ -128,6 +119,9 @@ function renderCards(data) {
             card.deleteCard();
             popupConfirmDelete.close();
           })
+          .catch((err) => {
+            console.log(err);
+        })    
       })
     },
     (id) => {
@@ -156,13 +150,19 @@ function renderCards(data) {
 //Отрисовка карточек при загрузке страницы
 const cards = new Section({ 
   items: [], 
-  renderer: (item) => {
-    cards.addItem(renderCards(item))
-  }},  
+  renderer: (data) => {
+    const cardItem = renderCards({
+      name: data.name,
+      link: data.link,
+      likes: data.likes,
+      id: data._id,
+      userId: userId,
+      ownerId: data.owner._id
+    })
+    cards.addItem(cardItem)
+  }},
   '.elements__cards'
 );
-
-cards.renderItems();
 
 const popupAddCard = new PopupWithForm('.popup_card-add',  
   {
@@ -183,19 +183,17 @@ const popupAddCard = new PopupWithForm('.popup_card-add',
         });
         cards.addItem(newCard);
         popupAddCard.close();
-        formElementCard.reset();
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => popupAvatarEdit.renderLoading(false))
+      .finally(() => popupAddCard.renderLoading(false))
   }}
 )
 
 popupAddCard.setEventListeners();
 
 profileOpenAddButton.addEventListener('click', function() {
-  formElementCard.reset();
   validatorAddCard.clearError();
   validatorAddCard.toggleButtonState();
 
